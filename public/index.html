@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Users Statistics</title>
+	<script type="text/javascript" src="socket.io.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+	<p id="users"></p>
+	<form action="">
+		<p>Query: <input type="text" placeholder="query" id="query"></p>
+		<input type="submit" name="submit" value="Perform Query" />
+	</form>
+	<pre id="results"></pre>
+	<script type="text/javascript">
+		var socket = io();
+		
+		socket.on('user connect', function (users) {
+			document.getElementById('users').innerHTML = users + " user/users are now connected.";
+		});
+
+		socket.on('query result', function (result) {
+			$("#results").html(JSON.stringify(result));
+		});
+
+		$('form').submit(function(){
+			
+			socket.emit('trigger query', {
+				query: $("#query").val()
+			});
+			
+			return false;
+		});
+	</script>
+</body>
+</html>
