@@ -37,6 +37,7 @@ socket.emit('trigger query', {
 	query: 'SELECT * FROM users WHERE username=? AND password=?',
 	params: ['jayshah', '000100010']
 });
+```
 
 **Example of batch insert:**
 ```javascript
@@ -52,5 +53,14 @@ socket.emit('trigger query', {
 	params: [values]
 });
 ```
+#### `query result`
 
-Well, thats pretty much it! 
+**Get result of a query as follows:**
+
+```javascript
+socket.on('query result', function (result) {
+	$("#results").html(JSON.stringify(result));
+});
+```
+
+Well, thats pretty much it!
