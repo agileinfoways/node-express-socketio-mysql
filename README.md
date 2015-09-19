@@ -1,6 +1,6 @@
 # node-express-socketio-mysql
 
-No more API calls! Communitcate with mysql database with socket.io
+No more API calls! Communicate with mysql database with socket.io
 
 ## List of events available:
 
